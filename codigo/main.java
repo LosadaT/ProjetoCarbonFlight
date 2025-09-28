@@ -86,7 +86,7 @@ public class main {
 
                 //mostrar conteudo arquivo
                 case 7:
-                    TGrafo.showArquivo("/Users/francisco/Documents/ProjetoCarbonFlight/codigo/grafoTeste.txt");
+                    TGrafo.showArquivo("/Users/francisco/Documents/ProjetoCarbonFlight/codigo/grafoEntrada.txt");
                     break;
 
                 //mostrar grafo
