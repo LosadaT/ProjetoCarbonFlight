@@ -34,17 +34,18 @@ public class main {
             switch(opcao) {
                 //Ler dados do arquivo
                 case 1:
-                    BufferedReader br = new BufferedReader(new FileReader("/Users/francisco/Documents/ProjetoCarbonFlight/codigo/grafoTeste.txt"));
+                    BufferedReader br = new BufferedReader(new FileReader("/Users/francisco/Documents/ProjetoCarbonFlight/codigo/grafoEntrada.txt"));
+                    br.readLine(); // Ignora a primeira linha
                     numVertices = Integer.parseInt(br.readLine().trim());
-                    numArestas = Integer.parseInt(br.readLine().trim());
-                    g = new TGrafo(numVertices);
-                    TGrafo gArquivo = TGrafo.fromArquivo(numArestas, numVertices, br, g);
+                    g = new TGrafo(numVertices); // Inicializa com o número correto de vértices
+                    TGrafo gArquivo = TGrafo.fromArquivo(0, numVertices, br, g); // O método vai ler os vértices e arestas
                     gArquivo.show();
                     break;
                     
                 //gravar dados no arquivo
                 case 2:
-
+                    g.toArquivo("/Users/francisco/Documents/ProjetoCarbonFlight/codigo/grafoSaida.txt", g);
+                    System.out.println("Dados gravados no arquivo grafo.txt");
                     break;
 
                 //inserir vertice
@@ -85,7 +86,7 @@ public class main {
 
                 //mostrar conteudo arquivo
                 case 7:
-
+                    TGrafo.showArquivo("/Users/francisco/Documents/ProjetoCarbonFlight/codigo/grafoTeste.txt");
                     break;
 
                 //mostrar grafo

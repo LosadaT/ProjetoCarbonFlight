@@ -72,7 +72,6 @@ public class TGrafo {
                 novaAdj[i][j] = adj[i][j];
             }
         }
-
         // Inicializa a nova linha e coluna com infinito
         for (int i = 0; i < n; i++) {
             novaAdj[i][n - 1] = Float.POSITIVE_INFINITY; // Nova coluna
@@ -84,17 +83,17 @@ public class TGrafo {
     public void show() {
         System.out.println("n: " + n);
         System.out.println("m: " + m);
+        int contador = 0;
         for (int i = 0; i < n; i++) {
-            System.out.print("\n");
             for (int w = 0; w < n; w++) {
-                if (adj[i][w] != Float.POSITIVE_INFINITY) {
-                    System.out.printf("%4.1f ", adj[i][w]);
-                } else {
-                    System.out.printf("%4s ", "∞");
+                if (adj[i][w] != Float.POSITIVE_INFINITY && adj[i][w] != 0) {
+                    System.out.println("Adj[" + (i+1) + "," + (w+1) + "] = [peso = " + adj[i][w] + "]");
+                    contador++;
                 }
             }
         }
-        System.out.println("\n\nfim da impressao do grafo.");
+        System.out.println("Total de arestas exibidas: " + contador);
+        System.out.println("\nfim da impressao do grafo.");
     }
 
 
@@ -163,16 +162,30 @@ public class TGrafo {
     }
 
     public static TGrafo fromArquivo(int arestas, int vertices, BufferedReader br, TGrafo g) throws IOException {
-        for (int i = 0; i < arestas; i++) {
-            String linha = br.readLine();
-            if (linha == null || linha.trim().isEmpty()) {
+        // Ignora a primeira linha (já lida fora)
+        // Segunda linha: quantidade de vértices (já lida fora)
+
+        // Ler os vértices
+        for (int i = 0; i < vertices; i++) {
+            String linhaVertice = br.readLine();
+            // Apenas ignora a linha do vértice
+        }
+
+        // Ler a quantidade de arestas
+        String linhaArestas = br.readLine();
+        int qtdArestas = Integer.parseInt(linhaArestas.trim());
+
+        // Ler as arestas
+        for (int i = 0; i < qtdArestas; i++) {
+            String linhaAresta = br.readLine();
+            if (linhaAresta == null || linhaAresta.trim().isEmpty()) {
                 continue;
             }
-            String[] partes = linha.trim().split("\\s+");
-            int v = Integer.parseInt(partes[0]);
-            int w = Integer.parseInt(partes[1]);
-            float peso = partes.length > 2 ? Float.parseFloat(partes[2]) : 1;
-            g.insereA(v, w, peso);
+            String[] partesAresta = linhaAresta.trim().split("\\s+");
+            int v = Integer.parseInt(partesAresta[0]);
+            int w = Integer.parseInt(partesAresta[1]);
+            float peso = partesAresta.length > 2 ? Float.parseFloat(partesAresta[2]) : 1;
+            g.insereA(v-1, w-1, peso);
         }
         br.close();
         return g;
@@ -560,5 +573,41 @@ public class TGrafo {
         }
         imprimeCaminho(antecessor, antecessor[v]);
         System.out.print(" -> " + v);
+    }
+
+    // Mostra o conteúdo do arquivo exatamente como está
+    public static void showArquivo(String caminhoArquivo) {
+        try (BufferedReader br = new BufferedReader(new java.io.FileReader(caminhoArquivo))) {
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                System.out.println(linha);
+            }
+        } catch (IOException e) {
+            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+        }
+    }
+
+    public void toArquivo(String caminhoArquivo, TGrafo g) {
+        try (java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter(caminhoArquivo))) {
+            bw.write("Grafo Direcionado\n");
+            bw.write(g.n + "\n");
+            // Escreve os vértices (aqui apenas escrevemos números sequenciais como exemplo)
+            for (int i = 0; i < g.n; i++) {
+                bw.write((i + 1) + "\n"); // Vértices numerados de 1 a n
+            }
+            // Escreve a quantidade de arestas
+            bw.write(g.m + "\n");
+            // Escreve as arestas
+            for (int i = 0; i < g.n; i++) {
+                for (int j = 0; j < g.n; j++) {
+                    if (g.adj[i][j] != Float.POSITIVE_INFINITY) {
+                        bw.write((i + 1) + " " + (j + 1) + " " + g.adj[i][j] + "\n");
+                    }
+                }
+            }
+            System.out.println("Grafo gravado com sucesso em " + caminhoArquivo);
+        } catch (IOException e) {
+            System.out.println("Erro ao gravar o arquivo: " + e.getMessage());
+        }
     }
 }
