@@ -1,4 +1,4 @@
-package codigo;
+package codigo.model;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -78,6 +78,19 @@ public class TGrafo {
             novaAdj[n - 1][i] = Float.POSITIVE_INFINITY; // Nova linha
         }
         adj = novaAdj;
+    }
+
+    // Getters para acessar informações do grafo
+    public int getN() {
+        return n;
+    }
+
+    public int getM() {
+        return m;
+    }
+
+    public float getAresta(int v, int w) {
+        return adj[v][w];
     }
 
     public void show() {
@@ -551,6 +564,70 @@ public class TGrafo {
             System.out.println();
         }
         return dist;
+    }
+
+    /**
+     * Classe para retornar resultado do Dijkstra (distâncias e antecessores)
+     */
+    public static class ResultadoDijkstra {
+        public float[] distancias;
+        public int[] antecessores;
+        
+        public ResultadoDijkstra(float[] distancias, int[] antecessores) {
+            this.distancias = distancias;
+            this.antecessores = antecessores;
+        }
+    }
+
+    /**
+     * Dijkstra silencioso - retorna distâncias e antecessores sem imprimir
+     */
+    public ResultadoDijkstra dijkstraSilencioso(int origem) {
+        float[] dist = new float[n];          
+        boolean[] visitado = new boolean[n]; 
+        int[] antecessor = new int[n];        
+
+        for (int i = 0; i < n; i++) {
+            dist[i] = Float.POSITIVE_INFINITY;
+            antecessor[i] = -1;
+            visitado[i] = false;
+        }
+
+        dist[origem] = 0; 
+
+        for (int count = 0; count < n - 1; count++) {
+            int u = minDistancia(dist, visitado);
+            if (u == -1) break; 
+
+            visitado[u] = true;
+
+            for (int v = 0; v < n; v++) {
+                if (!visitado[v] && adj[u][v] != Float.POSITIVE_INFINITY 
+                        && dist[u] + adj[u][v] < dist[v]) {
+                    dist[v] = dist[u] + adj[u][v];
+                    antecessor[v] = u;
+                }
+            }
+        }
+        
+        return new ResultadoDijkstra(dist, antecessor);
+    }
+
+    /**
+     * Retorna o caminho completo do Dijkstra como lista de índices
+     */
+    public java.util.List<Integer> obterCaminho(int[] antecessor, int destino) {
+        java.util.List<Integer> caminho = new java.util.ArrayList<>();
+        if (antecessor[destino] == -1 && destino != 0) {
+            return caminho; // Sem caminho
+        }
+        
+        int atual = destino;
+        while (atual != -1) {
+            caminho.add(0, atual); // Adiciona no início
+            atual = antecessor[atual];
+        }
+        return caminho;
     }
 
     private int minDistancia(float[] dist, boolean[] visitado) {
