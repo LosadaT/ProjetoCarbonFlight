@@ -17,7 +17,7 @@
         <nav class="navbar">
             <div class="container">
                 <div class="navbar-brand">
-                    <h1>Carbon Flight</h1>
+                    <h1><a href="/" style="color: inherit; text-decoration: none;">Carbon Flight</a></h1>
                 </div>
                 <ul class="navbar-menu">
                     <li><a href="/">Início</a></li>
@@ -40,10 +40,7 @@
                             <label for="origem">✈️ Origem (Código IATA)</label>
                             <input type="text" id="origem" name="origem" 
                                    placeholder="Digite cidade ou código (ex: São Paulo ou GRU)" 
-                                   maxlength="3" 
                                    required
-                                   pattern="[A-Za-z]{3}"
-                                   title="Digite um código IATA válido de 3 letras"
                                    autocomplete="off">
                             <small>Digite o nome da cidade ou aeroporto</small>
                         </div>
@@ -52,10 +49,7 @@
                             <label for="destino">🛬 Destino (Código IATA)</label>
                             <input type="text" id="destino" name="destino" 
                                    placeholder="Digite cidade ou código (ex: Nova York ou JFK)" 
-                                   maxlength="3" 
                                    required
-                                   pattern="[A-Za-z]{3}"
-                                   title="Digite um código IATA válido de 3 letras"
                                    autocomplete="off">
                             <small>Digite o nome da cidade ou aeroporto</small>
                         </div>
@@ -85,17 +79,6 @@
                         </button>
                     </div>
                 </form>
-
-                <div class="info-box">
-                    <h3>💡 Dicas para uma busca eficiente:</h3>
-                    <ul>
-                        <li>Digite o nome da cidade e selecione o aeroporto na lista</li>
-                        <li>Ou digite direto o código IATA de 3 letras (GRU, JFK, CDG, etc.)</li>
-                        <li>Escolha datas com antecedência para melhores preços</li>
-                        <li>Voos com menos escalas geralmente emitem menos carbono</li>
-                        <li>Aviões mais modernos (787, A350) são mais eficientes</li>
-                    </ul>
-                </div>
             </div>
         </section>
     </main>
@@ -112,7 +95,8 @@
     <script th:src="@{/js/loading.js}"></script>
     <script>
         // Define a data mínima como hoje
-        document.getElementById('data').min = new Date().toISOString().split('T')[0];
+        const dataInput = document.getElementById('data');
+        dataInput.min = new Date().toISOString().split('T')[0];
         
         // Converte para maiúsculas automaticamente (mantido para compatibilidade)
         document.getElementById('origem').addEventListener('input', function(e) {

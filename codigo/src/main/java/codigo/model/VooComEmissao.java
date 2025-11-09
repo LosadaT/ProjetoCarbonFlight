@@ -1,5 +1,7 @@
 package codigo.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -205,7 +207,10 @@ public class VooComEmissao implements Comparable<VooComEmissao> {
     // Retorna a data/hora de partida formatada
     public String getDataPartida() {
         try {
-            return voo.getItineraries()[0].getSegments()[0].getDeparture().getAt();
+            String isoDate = voo.getItineraries()[0].getSegments()[0].getDeparture().getAt();
+            // Converte de ISO 8601 (2025-01-20T10:30:00) para dd/mm/aaaa HH:mm
+            LocalDateTime dateTime = LocalDateTime.parse(isoDate, DateTimeFormatter.ISO_DATE_TIME);
+            return dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
         } catch (Exception e) {
             return "N/A";
         }
@@ -215,7 +220,10 @@ public class VooComEmissao implements Comparable<VooComEmissao> {
     public String getDataChegada() {
         try {
             var segmentos = voo.getItineraries()[0].getSegments();
-            return segmentos[segmentos.length - 1].getArrival().getAt();
+            String isoDate = segmentos[segmentos.length - 1].getArrival().getAt();
+            // Converte de ISO 8601 (2025-01-20T22:45:00) para dd/mm/aaaa HH:mm
+            LocalDateTime dateTime = LocalDateTime.parse(isoDate, DateTimeFormatter.ISO_DATE_TIME);
+            return dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
         } catch (Exception e) {
             return "N/A";
         }

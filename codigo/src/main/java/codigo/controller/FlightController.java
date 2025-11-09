@@ -51,12 +51,27 @@ public class FlightController {
         }
 
         try {
+            // Converte data de dd/mm/aaaa para yyyy-MM-dd (se necessário)
+            String dataConvertida = data;
+            String dataFormatada = data; // Para exibição
+            
+            if (data.matches("\\d{2}/\\d{2}/\\d{4}")) {
+                String[] partes = data.split("/");
+                dataConvertida = partes[2] + "-" + partes[1] + "-" + partes[0];
+                dataFormatada = data; // Já está em dd/mm/aaaa
+            } else if (data.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                // Se vier em yyyy-MM-dd, converte para dd/mm/aaaa para exibição
+                String[] partes = data.split("-");
+                dataFormatada = partes[2] + "/" + partes[1] + "/" + partes[0];
+                dataConvertida = data;
+            }
+            
             // Busca os voos
             FlightCarbonService service = new FlightCarbonService(apiKey, apiSecret);
             List<VooComEmissao> voos = service.buscarVoosOrdenadosPorEmissao(
                     origem.toUpperCase(),
                     destino.toUpperCase(),
-                    data,
+                    dataConvertida,
                     adultos
             );
 
@@ -64,7 +79,7 @@ public class FlightController {
             model.addAttribute("voos", voos);
             model.addAttribute("origem", origem.toUpperCase());
             model.addAttribute("destino", destino.toUpperCase());
-            model.addAttribute("data", data);
+            model.addAttribute("data", dataFormatada); // Exibe em dd/mm/aaaa
             model.addAttribute("adultos", adultos);
             model.addAttribute("titulo", "Resultados da Busca");
 
