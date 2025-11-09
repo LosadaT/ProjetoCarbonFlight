@@ -1,6 +1,9 @@
+codigo/controller/HomeController.class
 codigo/main.class
 codigo/service/FlightCarbonService.class
-codigo/util/CarbonEmissionCalculator.class
+codigo/Application.class
 codigo/model/VooComEmissao.class
+codigo/controller/FlightController.class
+codigo/util/CarbonEmissionCalculator.class
 codigo/model/TGrafo.class
 codigo/model/TGrafo$ResultadoDijkstra.class

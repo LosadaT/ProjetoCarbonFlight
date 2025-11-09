@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}">Buscar Voos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/forms.css}">
+    <link rel="stylesheet" th:href="@{/css/autocomplete.css}">
+    <link rel="stylesheet" th:href="@{/css/loading.css}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <h1>Carbon Flight</h1>
+                </div>
+                <ul class="navbar-menu">
+                    <li><a href="/">Início</a></li>
+                    <li><a href="/voos/buscar" class="active">Buscar Voos</a></li>
+                    <li><a href="/sobre">Sobre</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <div class="container">
+                <h2 th:text="${titulo}">Buscar Voos Sustentáveis</h2>
+                <p class="subtitle">Encontre voos com menor emissão de carbono 🌍</p>
+
+                <form th:action="@{/voos/buscar}" method="post" class="flight-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="origem">✈️ Origem (Código IATA)</label>
+                            <input type="text" id="origem" name="origem" 
+                                   placeholder="Digite cidade ou código (ex: São Paulo ou GRU)" 
+                                   maxlength="3" 
+                                   required
+                                   pattern="[A-Za-z]{3}"
+                                   title="Digite um código IATA válido de 3 letras"
+                                   autocomplete="off">
+                            <small>Digite o nome da cidade ou aeroporto</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="destino">🛬 Destino (Código IATA)</label>
+                            <input type="text" id="destino" name="destino" 
+                                   placeholder="Digite cidade ou código (ex: Nova York ou JFK)" 
+                                   maxlength="3" 
+                                   required
+                                   pattern="[A-Za-z]{3}"
+                                   title="Digite um código IATA válido de 3 letras"
+                                   autocomplete="off">
+                            <small>Digite o nome da cidade ou aeroporto</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="data">📅 Data de Partida</label>
+                            <input type="date" id="data" name="data" required>
+                            <small>Selecione a data da viagem</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adultos">👥 Número de Adultos</label>
+                            <input type="number" id="adultos" name="adultos" 
+                                   value="1" 
+                                   min="1" 
+                                   max="9" 
+                                   required>
+                            <small>De 1 a 9 passageiros</small>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            🔍 Buscar Voos Sustentáveis
+                        </button>
+                    </div>
+                </form>
+
+                <div class="info-box">
+                    <h3>💡 Dicas para uma busca eficiente:</h3>
+                    <ul>
+                        <li>Digite o nome da cidade e selecione o aeroporto na lista</li>
+                        <li>Ou digite direto o código IATA de 3 letras (GRU, JFK, CDG, etc.)</li>
+                        <li>Escolha datas com antecedência para melhores preços</li>
+                        <li>Voos com menos escalas geralmente emitem menos carbono</li>
+                        <li>Aviões mais modernos (787, A350) são mais eficientes</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Carbon Flight - Sistema de Voos Sustentáveis</p>
+            <p>Desenvolvido com 💚 para um planeta melhor</p>
+        </div>
+    </footer>
+
+    <script th:src="@{/js/airports.js}"></script>
+    <script th:src="@{/js/autocomplete.js}"></script>
+    <script th:src="@{/js/loading.js}"></script>
+    <script>
+        // Define a data mínima como hoje
+        document.getElementById('data').min = new Date().toISOString().split('T')[0];
+        
+        // Converte para maiúsculas automaticamente (mantido para compatibilidade)
+        document.getElementById('origem').addEventListener('input', function(e) {
+            e.target.value = e.target.value.toUpperCase();
+        });
+        document.getElementById('destino').addEventListener('input', function(e) {
+            e.target.value = e.target.value.toUpperCase();
+        });
+    </script>
+</body>
+</html>

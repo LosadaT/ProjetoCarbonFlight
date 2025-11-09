@@ -161,8 +161,26 @@ public class VooComEmissao implements Comparable<VooComEmissao> {
         return voo.getPrice().getTotal() + " " + voo.getPrice().getCurrency();
     }
     
+    // Retorna apenas o valor numérico do preço
+    public double getPrecoValor() {
+        try {
+            return Double.parseDouble(voo.getPrice().getTotal());
+        } catch (Exception e) {
+            return 0.0;
+        }
+    }
+    
+    // Retorna apenas a moeda do preço
+    public String getPrecoMoeda() {
+        return voo.getPrice().getCurrency();
+    }
+    
     public int getNumeroEscalas() {
         return voo.getItineraries()[0].getSegments().length - 1;
+    }
+    
+    public int getNumeroConexoes() {
+        return getNumeroEscalas(); // Alias para compatibilidade com template
     }
     
     // Retorna o código da companhia aérea principal
@@ -178,6 +196,60 @@ public class VooComEmissao implements Comparable<VooComEmissao> {
     public String getNomeCompanhia() {
         String codigo = getCodigoCompanhia();
         return COMPANHIAS.getOrDefault(codigo, codigo);
+    }
+    
+    public String getCompanhia() {
+        return getNomeCompanhia(); // Alias para template
+    }
+    
+    // Retorna a data/hora de partida formatada
+    public String getDataPartida() {
+        try {
+            return voo.getItineraries()[0].getSegments()[0].getDeparture().getAt();
+        } catch (Exception e) {
+            return "N/A";
+        }
+    }
+    
+    // Retorna a data/hora de chegada formatada
+    public String getDataChegada() {
+        try {
+            var segmentos = voo.getItineraries()[0].getSegments();
+            return segmentos[segmentos.length - 1].getArrival().getAt();
+        } catch (Exception e) {
+            return "N/A";
+        }
+    }
+    
+    // Retorna a duração total do voo
+    public String getDuracao() {
+        try {
+            String duration = voo.getItineraries()[0].getDuration();
+            // Formato ISO 8601: PT12H30M -> 12h 30min
+            return duration.replace("PT", "").replace("H", "h ").replace("M", "min");
+        } catch (Exception e) {
+            return "N/A";
+        }
+    }
+    
+    // Retorna a emissão de carbono formatada
+    public double getEmissaoCarbono() {
+        return emissaoTotal;
+    }
+    
+    // Retorna a rota completa com todas as escalas
+    public String getRota() {
+        try {
+            var segmentos = voo.getItineraries()[0].getSegments();
+            StringBuilder rota = new StringBuilder();
+            rota.append(segmentos[0].getDeparture().getIataCode());
+            for (var seg : segmentos) {
+                rota.append(" → ").append(seg.getArrival().getIataCode());
+            }
+            return rota.toString();
+        } catch (Exception e) {
+            return origem + " → " + destino;
+        }
     }
     
     // Retorna uma string formatada com informações do voo

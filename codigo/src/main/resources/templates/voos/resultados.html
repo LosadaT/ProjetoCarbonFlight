@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados - Carbon Flight</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/forms.css}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <h1>Carbon Flight</h1>
+                </div>
+                <ul class="navbar-menu">
+                    <li><a href="/">Início</a></li>
+                    <li><a href="/voos/buscar" class="active">Buscar Voos</a></li>
+                    <li><a href="/sobre">Sobre</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="results-section">
+            <div class="container">
+                <!-- Botão de Voltar -->
+                <div class="back-button-container">
+                    <a href="/voos/buscar" class="back-button">
+                        <span class="back-arrow">←</span>
+                        <span class="back-text">Nova Busca</span>
+                    </a>
+                </div>
+                
+                <!-- Cabeçalho de Resultados -->
+                <div class="results-header">
+                    <h2>✈️ Voos Encontrados</h2>
+                    <p>Ordenados por menor emissão de carbono</p>
+                    <div class="results-info">
+                        <div class="result-stat">
+                            <span class="number" th:text="${#lists.size(voos)}">0</span>
+                            <span class="label">voos disponíveis</span>
+                        </div>
+                        <div class="result-stat">
+                            <span class="number" th:text="${origem}">GRU</span>
+                            <span class="label">origem</span>
+                        </div>
+                        <div class="result-stat">
+                            <span class="number">→</span>
+                        </div>
+                        <div class="result-stat">
+                            <span class="number" th:text="${destino}">JFK</span>
+                            <span class="label">destino</span>
+                        </div>
+                        <div class="result-stat">
+                            <span class="number" th:text="${data}">2025-01-20</span>
+                            <span class="label">data</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lista de Voos -->
+                <div class="flights-grid" th:if="${voos != null and !voos.isEmpty()}">
+                    <div class="flight-card" th:each="voo, iterStat : ${voos}">
+                        <div class="flight-header">
+                            <div class="flight-route">
+                                <span th:text="${voo.origem}">GRU</span>
+                                <span> ✈️ </span>
+                                <span th:text="${voo.destino}">JFK</span>
+                            </div>
+                            <div class="flight-price">
+                                <span th:text="${voo.precoMoeda + ' ' + #numbers.formatDecimal(voo.precoValor, 1, 2)}">BRL 1.234,56</span>
+                            </div>
+                        </div>
+
+                        <div class="flight-details">
+                            <div class="detail-item">
+                                <span class="detail-label">🛫 Partida</span>
+                                <span class="detail-value" th:text="${voo.dataPartida}">2025-01-20 10:30</span>
+                            </div>
+
+                            <div class="detail-item">
+                                <span class="detail-label">🛬 Chegada</span>
+                                <span class="detail-value" th:text="${voo.dataChegada}">2025-01-20 22:45</span>
+                            </div>
+
+                            <div class="detail-item">
+                                <span class="detail-label">⏱️ Duração</span>
+                                <span class="detail-value" th:text="${voo.duracao}">12h 15min</span>
+                            </div>
+
+                            <div class="detail-item">
+                                <span class="detail-label">🔄 Escalas</span>
+                                <span class="detail-value" th:text="${voo.numeroConexoes == 0 ? 'Direto' : voo.numeroConexoes + ' escala(s)'}">Direto</span>
+                            </div>
+
+                            <div class="detail-item">
+                                <span class="detail-label">✈️ Companhia</span>
+                                <span class="detail-value" th:text="${voo.companhia}">LATAM</span>
+                            </div>
+
+                            <div class="detail-item">
+                                <span class="detail-label">🌍 Emissão de CO₂</span>
+                                <span class="detail-value">
+                                    <span th:text="${#numbers.formatDecimal(voo.emissaoCarbono, 1, 2)}">123.45</span> kg
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Badge de Classificação de Emissão -->
+                        <div>
+                            <span class="emission-badge" 
+                                  th:classappend="${voo.emissaoCarbono < 100 ? 'emission-low' : (voo.emissaoCarbono < 200 ? 'emission-medium' : 'emission-high')}">
+                                <span th:if="${voo.emissaoCarbono < 100}">🌱 Emissão Baixa</span>
+                                <span th:if="${voo.emissaoCarbono >= 100 and voo.emissaoCarbono < 200}">⚠️ Emissão Média</span>
+                                <span th:if="${voo.emissaoCarbono >= 200}">🔴 Emissão Alta</span>
+                            </span>
+                        </div>
+
+                        <!-- Detalhes da Rota (se houver conexões) -->
+                        <div th:if="${voo.numeroConexoes > 0}" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #f0f0f0;">
+                            <span class="detail-label" style="display: block; margin-bottom: 8px;">🗺️ Rota Completa:</span>
+                            <span class="detail-value" th:text="${voo.rota}">GRU → CDG → JFK</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mensagem quando não há voos -->
+                <div class="empty-state" th:if="${voos == null or voos.isEmpty()}">
+                    <div class="error-icon">😞</div>
+                    <h3>Nenhum voo encontrado</h3>
+                    <p>Não encontramos voos disponíveis para sua busca.</p>
+                    <p>Tente alterar os parâmetros de busca ou escolher outra data.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Carbon Flight - Sistema de Voos Sustentáveis</p>
+            <p>Desenvolvido com 💚 para um planeta melhor</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,123 @@
+/* ===============================================
+   AUTOCOMPLETE DE AEROPORTOS
+   =============================================== */
+
+.autocomplete-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 2px solid #27ae60;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    margin-top: -2px;
+}
+
+.autocomplete-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s ease;
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+    border-radius: 0 0 6px 6px;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.active {
+    background-color: #f0f9f4;
+}
+
+.airport-code {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #27ae60;
+    min-width: 60px;
+    margin-right: 15px;
+    text-align: center;
+}
+
+.airport-info {
+    flex: 1;
+}
+
+.airport-city {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 3px;
+}
+
+.airport-name {
+    font-size: 0.9em;
+    color: #7f8c8d;
+    margin-bottom: 2px;
+}
+
+.airport-country {
+    font-size: 0.85em;
+    color: #95a5a6;
+}
+
+/* Scrollbar personalizada para o autocomplete */
+.autocomplete-suggestions::-webkit-scrollbar {
+    width: 8px;
+}
+
+.autocomplete-suggestions::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 0 0 6px 0;
+}
+
+.autocomplete-suggestions::-webkit-scrollbar-thumb {
+    background: #27ae60;
+    border-radius: 4px;
+}
+
+.autocomplete-suggestions::-webkit-scrollbar-thumb:hover {
+    background: #229954;
+}
+
+/* Ajuste no input quando o autocomplete está ativo */
+.form-group input:focus {
+    border-radius: 8px 8px 0 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .autocomplete-suggestions {
+        max-height: 300px;
+    }
+    
+    .autocomplete-item {
+        padding: 10px 12px;
+    }
+    
+    .airport-code {
+        font-size: 1.2em;
+        min-width: 50px;
+        margin-right: 10px;
+    }
+    
+    .airport-city {
+        font-size: 1em;
+    }
+    
+    .airport-name {
+        font-size: 0.85em;
+    }
+    
+    .airport-country {
+        font-size: 0.8em;
+    }
+}

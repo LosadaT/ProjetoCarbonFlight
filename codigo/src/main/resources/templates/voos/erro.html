@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erro - Carbon Flight</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/forms.css}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <h1>Carbon Flight</h1>
+                </div>
+                <ul class="navbar-menu">
+                    <li><a href="/">Início</a></li>
+                    <li><a href="/voos/buscar">Buscar Voos</a></li>
+                    <li><a href="/sobre">Sobre</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="error-section">
+            <div class="container">
+                <div class="error-box">
+                    <div class="error-icon">❌</div>
+                    <h2>Ops! Algo deu errado</h2>
+                    <p th:text="${mensagem ?: 'Ocorreu um erro ao processar sua solicitação.'}">
+                        Ocorreu um erro ao processar sua solicitação.
+                    </p>
+
+                    <div class="error-details" th:if="${detalhes}">
+                        <strong>Detalhes do erro:</strong>
+                        <code th:text="${detalhes}">Erro desconhecido</code>
+                    </div>
+
+                    <div style="margin-top: 30px;">
+                        <a href="/voos/buscar" class="btn btn-primary" style="margin-right: 10px;">
+                            🔍 Nova Busca
+                        </a>
+                        <a href="/" class="btn btn-secondary">
+                            🏠 Voltar ao Início
+                        </a>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 30px; text-align: left;">
+                        <h3>💡 Possíveis causas:</h3>
+                        <ul>
+                            <li>Códigos IATA inválidos (use GRU, JFK, CDG, etc.)</li>
+                            <li>Data de partida no passado</li>
+                            <li>Número de passageiros fora do limite (1-9)</li>
+                            <li>Falha na conexão com a API de voos</li>
+                            <li>Credenciais da API não configuradas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Carbon Flight - Sistema de Voos Sustentáveis</p>
+            <p>Desenvolvido com 💚 para um planeta melhor</p>
+        </div>
+    </footer>
+</body>
+</html>

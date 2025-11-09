@@ -1,0 +1,459 @@
+/* ===============================================
+   FORMULÁRIOS - Carbon Flight
+   =============================================== */
+
+.form-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #EBD7A5 0%, #d4c093 100%);
+    min-height: calc(100vh - 180px);
+}
+
+.form-section .container {
+    max-width: 800px;
+}
+
+.form-section h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+}
+
+.subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+/* Estilo do Formulário */
+.flight-form {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-size: 1em;
+}
+
+.form-group input {
+    padding: 12px 15px;
+    border: 2px solid #e0e6ed;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #876000;
+    box-shadow: 0 0 0 3px rgba(135, 96, 0, 0.1);
+}
+
+.form-group input[type="text"] {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.form-group small {
+    margin-top: 5px;
+    font-size: 0.85em;
+    color: #7f8c8d;
+}
+
+.form-actions {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btn-large {
+    padding: 15px 50px;
+    font-size: 1.1em;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Caixa de Informações */
+.info-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #27ae60;
+}
+
+.info-box h3 {
+    color: #27ae60;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.info-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-box li {
+    padding: 10px 0;
+    color: #555;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 25px;
+}
+
+.info-box li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #876000;
+    font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .flight-form {
+        padding: 25px 20px;
+    }
+
+    .form-section h2 {
+        font-size: 2em;
+    }
+
+    .btn-large {
+        width: 100%;
+    }
+}
+
+/* ===============================================
+   PÁGINA DE RESULTADOS
+   =============================================== */
+
+.results-section {
+    padding: 60px 0;
+    background: #EBD7A5;
+    min-height: calc(100vh - 180px);
+}
+
+.results-header {
+    background: linear-gradient(135deg, #876000 0%, #6b4d00 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.results-header h2 {
+    margin: 0 0 10px 0;
+    color: white;
+}
+
+.results-info {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.result-stat {
+    text-align: center;
+}
+
+.result-stat .number {
+    font-size: 2em;
+    font-weight: bold;
+    display: block;
+}
+
+.result-stat .label {
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+/* Cards de Voos */
+.flights-grid {
+    display: grid;
+    gap: 25px;
+}
+
+.flight-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid #876000;
+}
+
+.flight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.flight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.flight-route {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.flight-price {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #876000;
+}
+
+.flight-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-size: 0.85em;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Badge de Emissão */
+.emission-badge {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.emission-low {
+    background: #d4edda;
+    color: #155724;
+}
+
+.emission-medium {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.emission-high {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Botão de Nova Busca */
+.new-search {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Mensagem de Vazio */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 15px;
+}
+
+.empty-state h3 {
+    font-size: 2em;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+.empty-state p {
+    color: #95a5a6;
+    font-size: 1.1em;
+}
+
+/* ===============================================
+   PÁGINA DE ERRO
+   =============================================== */
+
+.error-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #EBD7A5 0%, #d4c093 100%);
+    min-height: calc(100vh - 180px);
+    display: flex;
+    align-items: center;
+}
+
+.error-box {
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    border-top: 5px solid #e74c3c;
+}
+
+.error-icon {
+    font-size: 5em;
+    margin-bottom: 20px;
+}
+
+.error-box h2 {
+    color: #e74c3c;
+    margin-bottom: 15px;
+    font-size: 2em;
+}
+
+.error-box p {
+    color: #7f8c8d;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.error-details {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.error-details strong {
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.error-details code {
+    color: #e74c3c;
+    background: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+@media (max-width: 768px) {
+    .results-info {
+        flex-direction: column;
+    }
+
+
+    .flight-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .flight-details {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .error-box {
+        padding: 30px 20px;
+    }
+
+    .error-icon {
+        font-size: 3em;
+    }
+}
+
+/* ===============================================
+   BOTÃO DE VOLTAR (TOPO DA PÁGINA)
+   =============================================== */
+
+.back-button-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px 0;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #876000;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(135, 96, 0, 0.3);
+}
+
+.back-button:hover {
+    background: #6b4d00;
+    transform: translateX(-5px);
+    box-shadow: 0 4px 12px rgba(135, 96, 0, 0.4);
+}
+
+.back-arrow {
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover .back-arrow {
+    transform: translateX(-3px);
+}
+
+.back-text {
+    font-size: 1em;
+}
+
+/* Responsivo - Botão de Voltar */
+@media (max-width: 768px) {
+    .back-button {
+        padding: 10px 20px;
+        font-size: 0.95em;
+    }
+
+    .back-arrow {
+        font-size: 1.3em;
+    }
+}
+

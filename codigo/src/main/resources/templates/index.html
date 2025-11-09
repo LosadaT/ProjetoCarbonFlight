@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}">Carbon Flight</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <h1>Carbon Flight</h1>
+                </div>
+                <ul class="navbar-menu">
+                    <li><a href="/" class="active">Início</a></li>
+                    <li><a href="/voos/buscar">Buscar Voos</a></li>
+                    <li><a href="/sobre">Sobre</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2 class="hero-title" th:text="${titulo}">Carbon Flight</h2>
+                <p class="hero-subtitle" th:text="${subtitulo}">Sistema de Voos Sustentáveis</p>
+                <p class="hero-description">
+                    Encontre voos com menor emissão de carbono e contribua para um planeta mais sustentável! 🌍
+                </p>
+                <div class="hero-actions">
+                    <a href="/voos/buscar" class="btn btn-primary">
+                        🔍 Buscar Voos Sustentáveis
+                    </a>
+                    <a href="/sobre" class="btn btn-secondary">
+                        📖 Saiba Mais
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h3>Por que usar o Carbon Flight?</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌱</div>
+                        <h4>Emissões Reais</h4>
+                        <p>Cálculos baseados em dados reais da ICAO e modelos específicos de aeronaves</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h4>Algoritmo Dijkstra</h4>
+                        <p>Usamos algoritmos de grafos para encontrar as rotas mais eficientes</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h4>Comparação Fácil</h4>
+                        <p>Compare voos lado a lado e veja o impacto de cada escolha</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <h4>Preços Reais</h4>
+                        <p>Dados atualizados da API Amadeus com preços em tempo real</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="call-to-action">
+            <div class="container">
+                <h3>Pronto para viajar de forma sustentável?</h3>
+                <p>Comece sua busca agora e faça a diferença!</p>
+                <a href="/voos/buscar" class="btn btn-large">Buscar Voos Agora</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Carbon Flight - Sistema de Voos Sustentáveis</p>
+            <p>Desenvolvido com 💚 para um planeta melhor</p>
+        </div>
+    </footer>
+</body>
+</html>
