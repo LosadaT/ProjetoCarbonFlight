@@ -17,7 +17,7 @@
         <nav class="navbar">
             <div class="container">
                 <div class="navbar-brand">
-                    <h1><a href="/" style="color: inherit; text-decoration: none;">Carbon Flight</a></h1>
+                    <a href="/"><h1>Carbon Flight</h1></a>
                 </div>
                 <ul class="navbar-menu">
                     <li><a href="/">Início</a></li>
@@ -34,7 +34,7 @@
                 <h2 th:text="${titulo}">Buscar Voos Sustentáveis</h2>
                 <p class="subtitle">Encontre voos com menor emissão de carbono 🌍</p>
 
-                <form th:action="@{/voos/buscar}" method="post" class="flight-form">
+                <form id="flightSearchForm" th:action="@{/voos/buscar}" method="post" class="flight-form">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="origem">✈️ Origem (Código IATA)</label>
@@ -90,20 +90,28 @@
         </div>
     </footer>
 
-    <script th:src="@{/js/airports.js}"></script>
-    <script th:src="@{/js/autocomplete.js}"></script>
+    <script th:src="@{/js/airports.js?v=2}"></script>
+    <script th:src="@{/js/autocomplete.js?v=2}"></script>
     <script th:src="@{/js/loading.js}"></script>
     <script>
         // Define a data mínima como hoje
         const dataInput = document.getElementById('data');
         dataInput.min = new Date().toISOString().split('T')[0];
         
-        // Converte para maiúsculas automaticamente (mantido para compatibilidade)
-        document.getElementById('origem').addEventListener('input', function(e) {
-            e.target.value = e.target.value.toUpperCase();
-        });
-        document.getElementById('destino').addEventListener('input', function(e) {
-            e.target.value = e.target.value.toUpperCase();
+        // Extrai código IATA antes de submeter o formulário
+        const form = document.getElementById('flightSearchForm');
+        form.addEventListener('submit', function(e) {
+            const origemInput = document.getElementById('origem');
+            const destinoInput = document.getElementById('destino');
+            
+            // Extrai o código IATA do formato "Cidade (IATA)"
+            const extractIATA = (value) => {
+                const match = value.match(/\(([A-Z]{3})\)/);
+                return match ? match[1] : value.toUpperCase().trim();
+            };
+            
+            origemInput.value = extractIATA(origemInput.value);
+            destinoInput.value = extractIATA(destinoInput.value);
         });
     </script>
 </body>

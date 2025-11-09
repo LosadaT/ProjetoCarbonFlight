@@ -1,8 +1,9 @@
 # 🌱 Carbon Flight - Documentação Completa
 
-> **Última atualização:** 7 de Novembro de 2025  
-> **Versão:** 2.0  
-> **Status:** ✅ Produção
+> **Última atualização:** 9 de Novembro de 2025  
+> **Versão:** 3.0  
+> **Status:** ✅ Produção  
+> **Interface:** Web (Spring Boot + Thymeleaf)
 
 ---
 
@@ -11,13 +12,15 @@
 1. [Visão Geral](#-visão-geral)
 2. [Como Executar](#-como-executar)
 3. [Funcionalidades](#-funcionalidades)
-4. [Arquitetura](#-arquitetura)
-5. [Cálculo de CO₂](#-cálculo-de-co₂)
-6. [Algoritmo Dijkstra](#-algoritmo-dijkstra)
-7. [API Amadeus](#-api-amadeus)
-8. [Histórico de Atualizações](#-histórico-de-atualizações)
-9. [Próximos Passos](#-próximos-passos)
-10. [FAQ](#-faq)
+4. [Cobertura Global](#-cobertura-global)
+5. [Interface Web](#-interface-web)
+6. [Arquitetura](#-arquitetura)
+7. [Cálculo de CO₂](#-cálculo-de-co₂)
+8. [Algoritmo Dijkstra](#-algoritmo-dijkstra)
+9. [API Amadeus](#-api-amadeus)
+10. [Histórico de Atualizações](#-histórico-de-atualizações)
+11. [Próximos Passos](#-próximos-passos)
+12. [FAQ](#-faq)
 
 ---
 
@@ -25,7 +28,9 @@
 
 ### O que é o Carbon Flight?
 
-Sistema inteligente para **buscar e comparar voos baseado em emissões de carbono**, ajudando viajantes a escolher as rotas mais sustentáveis. Integra dados da API Amadeus com algoritmos de grafos para encontrar as melhores opções.
+Sistema web inteligente para **buscar e comparar voos baseado em emissões de carbono**, ajudando viajantes a escolher as rotas mais sustentáveis. Integra dados da API Amadeus com algoritmos de grafos para encontrar as melhores opções.
+
+**Novidade V3.0**: Interface web completa com **741 aeroportos** em todo o mundo!
 
 ### 🎯 Objetivos
 
@@ -35,19 +40,34 @@ Sistema inteligente para **buscar e comparar voos baseado em emissões de carbon
 - ✅ Mostrar impacto ambiental de cada opção
 - ✅ Usar modelos específicos de aeronaves para máxima precisão
 - ✅ Permitir comparação transparente entre voos
+- ✅ **NOVO**: Interface web moderna e intuitiva
+- ✅ **NOVO**: Cobertura global com 741 aeroportos
 
 ### 🏆 Diferenciais
 
-1. **Precisão em 3 Níveis**
+1. **Interface Web Moderna**
+   - Design responsivo e intuitivo
+   - Autocomplete inteligente de 741 aeroportos
+   - Busca por cidade ou código IATA
+   - Visualização clara com cores indicativas
+
+2. **Cobertura Global Abrangente**
+   - 741 aeroportos em todos os continentes
+   - Brasil completo: 104 aeroportos
+   - Europa: 145+ aeroportos (38 países)
+   - Américas: 254 aeroportos
+   - Ásia, África e Oceania totalmente cobertos
+
+3. **Precisão em 3 Níveis**
    - Dados reais da API (quando disponível)
    - Cálculo por modelo de aeronave (45+ aviões cadastrados)
    - Estimativa genérica ICAO (fallback)
 
-2. **Algoritmo Otimizado**
+4. **Algoritmo Otimizado**
    - Usa Dijkstra para encontrar rota com menor CO₂
    - Considera escalas e distâncias reais
 
-3. **Transparência Total**
+5. **Transparência Total**
    - Mostra modelo específico de cada avião
    - Indica fonte do cálculo (API/Modelo/Genérico)
    - Classifica emissões (BAIXA/MÉDIA/ALTA/MUITO ALTA)

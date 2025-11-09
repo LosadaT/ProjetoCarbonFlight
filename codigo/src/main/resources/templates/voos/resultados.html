@@ -15,7 +15,7 @@
         <nav class="navbar">
             <div class="container">
                 <div class="navbar-brand">
-                    <h1><a href="/" style="color: inherit; text-decoration: none;">Carbon Flight</a></h1>
+                    <a href="/"><h1>Carbon Flight</h1></a>
                 </div>
                 <ul class="navbar-menu">
                     <li><a href="/">Início</a></li>
@@ -33,7 +33,7 @@
                 <div class="back-button-container">
                     <a href="/voos/buscar" class="back-button">
                         <span class="back-arrow">←</span>
-                        <span class="back-text">Nova Busca</span>
+                        <span class="back-text">Voltar</span>
                     </a>
                 </div>
                 
@@ -44,7 +44,7 @@
                     <div class="results-info">
                         <div class="result-stat">
                             <span class="number" th:text="${#lists.size(voos)}">0</span>
-                            <span class="label">voos disponíveis</span>
+                            <span class="label">voos encontrados</span>
                         </div>
                         <div class="result-stat">
                             <span class="number" th:text="${origem}">GRU</span>
@@ -73,8 +73,8 @@
                                 <span> ✈️ </span>
                                 <span th:text="${voo.destino}">JFK</span>
                             </div>
-                            <div class="flight-price">
-                                <span th:text="${voo.precoMoeda + ' ' + #numbers.formatDecimal(voo.precoValor, 1, 2)}">BRL 1.234,56</span>
+                            <div class="flight-emission">
+                                <span th:text="${#numbers.formatDecimal(voo.emissaoCarbono, 1, 2)}">123.45</span> kg CO₂
                             </div>
                         </div>
 
@@ -105,10 +105,8 @@
                             </div>
 
                             <div class="detail-item">
-                                <span class="detail-label">🌍 Emissão de CO₂</span>
-                                <span class="detail-value">
-                                    <span th:text="${#numbers.formatDecimal(voo.emissaoCarbono, 1, 2)}">123.45</span> kg
-                                </span>
+                                <span class="detail-label">💰 Preço</span>
+                                <span class="detail-value" th:text="${voo.precoMoeda + ' ' + #numbers.formatDecimal(voo.precoValor, 1, 2)}">BRL 1.234,56</span>
                             </div>
                         </div>
 
@@ -147,5 +145,30 @@
             <p>Desenvolvido com 💚 para um planeta melhor</p>
         </div>
     </footer>
+
+    <script th:src="@{/js/airports.js?v=2}"></script>
+    <script th:inline="javascript">
+        // Converte códigos IATA para "Cidade (IATA)" no cabeçalho de resultados
+        document.addEventListener('DOMContentLoaded', function() {
+            const origemElement = document.querySelector('.results-info .result-stat:nth-child(2) .number');
+            const destinoElement = document.querySelector('.results-info .result-stat:nth-child(4) .number');
+            
+            if (origemElement && destinoElement && typeof airports !== 'undefined') {
+                const origemCode = origemElement.textContent.trim();
+                const destinoCode = destinoElement.textContent.trim();
+                
+                const origemAirport = airports.find(a => a.iata === origemCode);
+                const destinoAirport = airports.find(a => a.iata === destinoCode);
+                
+                if (origemAirport) {
+                    origemElement.textContent = `${origemAirport.city} (${origemCode})`;
+                }
+                
+                if (destinoAirport) {
+                    destinoElement.textContent = `${destinoAirport.city} (${destinoCode})`;
+                }
+            }
+        });
+    </script>
 </body>
 </html>

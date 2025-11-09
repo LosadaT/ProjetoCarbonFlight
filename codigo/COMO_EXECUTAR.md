@@ -1,133 +1,121 @@
-# 🚀 Como Executar# 🚀 Como Executar o Carbon Flight
+# 🚀 Como Executar o Carbon Flight
 
+> **📖 Documentação Completa:** [DOCUMENTACAO.md](DOCUMENTACAO.md)
 
+---
 
-> **📖 Documentação Completa:** [DOCUMENTACAO.md](DOCUMENTACAO.md)## Opção 1: Executar Diretamente (Recomendado)
+## ⚡ Início Rápido
 
+### 1️⃣ Configure as credenciais
 
+Edite o arquivo `src/main/resources/application.properties`:
 
-## Início Rápido```bash
-
-cd /Users/francisco/Documents/ProjetoCarbonFlight/codigo
-
-```bashmvn exec:java -Dexec.mainClass="codigo.main"
-
-mvn exec:java -Dexec.mainClass="codigo.main"```
-
+```properties
+amadeus.api.key=SUA_API_KEY_AQUI
+amadeus.api.secret=SEU_API_SECRET_AQUI
 ```
 
-Depois escolha a opção desejada no menu interativo.
+> **Não tem credenciais?** Veja [CREDENCIAIS.md](CREDENCIAIS.md)
 
-Escolha a opção **10** para buscar voos por emissão de carbono.
+### 2️⃣ Compile o projeto
 
----
-
----
-
-## Opção 2: Usar Script de Teste
-
-Para instruções detalhadas, exemplos, FAQ e documentação completa:
-
-```bash
-
-## 👉 [DOCUMENTACAO.md](DOCUMENTACAO.md)./testar.sh
-
-```
-
----
-
-Este script oferece:
-
-*Última atualização: 7 de Novembro de 2025*- 1️⃣ Teste completo automático (GRU → JFK)
-
-- 2️⃣ Modo interativo completo
-- 3️⃣ Teste da API Amadeus
-- 0️⃣ Cancelar
-
----
-
-## Opção 3: Compilar e Executar Manualmente
-
-### Compilar
 ```bash
 mvn clean compile
 ```
 
-### Executar
+### 3️⃣ Execute a aplicação
+
 ```bash
-mvn exec:java -Dexec.mainClass="codigo.main"
+mvn spring-boot:run
 ```
+
+### 4️⃣ Acesse no navegador
+
+Abra seu navegador e acesse:
+```
+http://localhost:8080
+```
+
+🎉 **Pronto!** Você verá a página inicial do Carbon Flight.
 
 ---
 
-## 🌱 Buscar Voos por Emissão de Carbono
+## 🌐 Usando a Interface Web
 
-No menu principal, escolha a opção **10**:
+### Página Inicial
+- Clique em **"Buscar Voos"** para começar
 
-```
-Escolha uma opção: 10
-```
+### Busca de Voos
+1. **Origem**: Digite o nome da cidade ou código IATA
+   - Exemplo: "São Paulo" ou "GRU"
+   - Use o autocomplete para selecionar o aeroporto correto
+   
+2. **Destino**: Digite o nome da cidade ou código IATA
+   - Exemplo: "Lisboa" ou "LIS"
+   - 741 aeroportos disponíveis!
 
-Depois forneça:
-1. **Origem**: Código IATA (ex: GRU, JFK, LHR, CDG)
-2. **Destino**: Código IATA
-3. **Data**: Formato YYYY-MM-DD (ex: 2025-12-15)
-4. **Adultos**: Número de passageiros (ex: 1)
+3. **Data**: Selecione a data de partida (formato dd/mm/aaaa)
+   - Exemplo: 25/01/2025
 
-### Exemplo Completo:
-```
-Escolha uma opção: 10
+4. **Passageiros**: Número de adultos
+   - Exemplo: 1
 
-Aeroporto de origem: GRU
-Aeroporto de destino: JFK
-Data de partida: 2025-12-15
-Número de adultos: 1
-```
+5. Clique em **"Buscar Voos"**
 
-O sistema irá:
-1. ✅ Buscar voos na API Amadeus
-2. ✅ Calcular emissões de CO₂ (reais ou estimadas)
-3. ✅ Ordenar por menor emissão
-4. ✅ Mostrar ranking com estatísticas
-5. ✅ Adicionar rotas ao grafo
+### Visualizando Resultados
+- Voos ordenados por **menor emissão de CO₂**
+- Cores indicativas:
+  - 🟢 **Verde**: Baixa emissão (ótima escolha!)
+  - 🟡 **Amarelo**: Média emissão
+  - 🟠 **Laranja**: Alta emissão
+  - 🔴 **Vermelho**: Muito alta emissão
 
----
-
-## 🧪 Testar API Amadeus
-
-No menu principal, escolha a opção **11**:
-
-```
-Escolha uma opção: 11
-```
-
-Isso fará uma busca de teste GRU → JFK.
+- Informações exibidas:
+  - Emissão de CO₂ por passageiro
+  - Preço em reais (BRL)
+  - Companhia aérea
+  - Horários de partida e chegada
+  - Número de escalas
+  - Duração total do voo
+  - Modelo da aeronave (quando disponível)
 
 ---
 
-## 📋 Códigos IATA Comuns
+## 📍 Aeroportos Disponíveis
 
-### Brasil
-- **GRU** - Guarulhos, São Paulo
-- **GIG** - Galeão, Rio de Janeiro
-- **BSB** - Brasília
-- **SSA** - Salvador
+O sistema possui **741 aeroportos** cadastrados:
 
-### Estados Unidos
-- **JFK** - John F. Kennedy, Nova York
-- **LAX** - Los Angeles
-- **MIA** - Miami
-- **ORD** - Chicago
+### Brasil (104 aeroportos) 🇧🇷
+- Todas as capitais (São Paulo, Rio, Brasília, Salvador, etc.)
+- Principais cidades (Foz do Iguaçu, Uberlândia, Joinville, etc.)
+- Destinos turísticos (Fernando de Noronha, Porto Seguro, etc.)
 
-### Europa
-- **LHR** - Londres Heathrow
-- **CDG** - Paris Charles de Gaulle
-- **MAD** - Madrid
-- **BCN** - Barcelona
-- **FCO** - Roma Fiumicino
+### América do Norte (142 aeroportos) 🌎
+- **EUA**: 58 aeroportos (Nova York, Los Angeles, Miami, Chicago, etc.)
+- **México**: 27 aeroportos (Cancún, Guadalajara, Puerto Vallarta, etc.)
+- **Canadá**: 15 aeroportos (Toronto, Vancouver, Montreal, etc.)
+
+### América do Sul (112 aeroportos) 🌎
+- Argentina, Chile, Peru, Colômbia, Equador, Venezuela
+- Destinos: Buenos Aires, Santiago, Lima, Bogotá, Cusco, etc.
+
+### Europa (145+ aeroportos) 🇪🇺
+- Reino Unido, França, Espanha, Itália, Alemanha, Portugal
+- Destinos: Londres, Paris, Roma, Madrid, Lisboa, Barcelona, etc.
+
+### Ásia (120+ aeroportos) 🌏
+- China, Japão, Índia, Tailândia, Singapura, Emirados Árabes
+- Destinos: Tóquio, Dubai, Bangkok, Singapura, Hong Kong, etc.
+
+### África (85+ aeroportos) 🌍
+- África do Sul, Egito, Marrocos, Quênia, Nigéria
+- Destinos: Cidade do Cabo, Cairo, Marrakesh, Nairobi, etc.
+
+### Oceania (45+ aeroportos) 🌊
+- Austrália, Nova Zelândia, ilhas do Pacífico
+- Destinos: Sydney, Melbourne, Auckland, Fiji, Tahiti, etc.
 
 ---
-
 ## ⚠️ Notas Importantes
 
 ### Sobre Dados de CO₂
@@ -140,13 +128,11 @@ O sistema usa uma abordagem híbrida de **3 níveis** para máxima precisão:
 
 **Novo!** O sistema agora mostra o modelo específico de cada aeronave nos detalhes do voo, permitindo que você escolha voos com aviões mais eficientes (ex: Boeing 787 Dreamliner, Airbus A350).
 
-Atualmente, a API não está retornando dados reais de CO₂, então o sistema usa cálculos por modelo de aeronave com precisão de ~85-90%.
-
-### Sobre Erros de Input
-
-Se você receber `NoSuchElementException`:
-- **Causa**: Scanner tentou ler mas não havia entrada disponível
-- **Solução**: Use o modo interativo ou forneça todas as entradas necessárias
+### Sobre a API Amadeus
+- **Limites gratuitos**: 2.000 chamadas/mês
+- **Dados**: Voos reais com preços atualizados
+- **Disponibilidade**: Voos até 11 meses no futuro
+- **Horário**: Use datas futuras (hoje + alguns dias)
 
 ---
 
@@ -158,65 +144,179 @@ Se você receber `NoSuchElementException`:
 mvn clean compile
 ```
 
-### Erro: "NoSuchElementException"
-- Isso ocorre quando entrada automatizada termina antes do esperado
-- **Solução**: Use modo interativo normal
+### Erro: "Connection refused" ou porta 8080 em uso
+```bash
+# Verificar se algo está usando a porta 8080
+lsof -i :8080
 
-### Erro: "API Error"
-- Verifique se as credenciais estão corretas em `main.java`
-- Verifique conexão com internet
-- A API Amadeus pode estar temporariamente indisponível
+# Matar o processo (substitua PID pelo número real)
+kill -9 PID
+
+# Ou usar outra porta no application.properties:
+# server.port=8081
+```
+
+### Erro: "API Error 401 - Unauthorized"
+- Verifique se as credenciais estão corretas em `application.properties`
+- Confirme que copiou API Key e API Secret corretamente
+- Teste suas credenciais em: https://developers.amadeus.com/
+
+### Erro: "No flights found"
+- Tente outra data (alguns dias no futuro)
+- Verifique se os códigos IATA estão corretos
+- Nem todas as rotas têm voos disponíveis
+
+### Autocomplete não funciona
+```bash
+# Limpe o cache do navegador:
+# Chrome/Edge: Ctrl+Shift+Delete
+# Firefox: Ctrl+Shift+Delete
+# Safari: Command+Option+E
+
+# Ou force refresh da página:
+# Windows/Linux: Ctrl+Shift+R
+# Mac: Command+Shift+R
+```
 
 ### Programa não inicia
 ```bash
 # Verificar Java
-java -version
+java -version  # Deve ser 11+
 
 # Verificar Maven
-mvn -version
+mvn -version  # Deve ser 3.6+
 
-# Recompilar
-mvn clean compile
+# Recompilar tudo
+mvn clean install
+
+# Verificar se o Spring Boot está funcionando
+mvn spring-boot:run
 ```
 
 ---
 
-## 📊 Exemplo de Saída
+## 📊 Exemplo de Saída na Web
 
-### Lista de Voos
+### Tela de Resultados
+
+Após buscar voos de **São Paulo (GRU) → Lisboa (LIS)**, você verá:
+
+#### Header da Rota
 ```
-╔════════════════════════════════════════════════════════════════╗
-║         VOOS ORDENADOS POR EMISSÃO DE CARBONO (MENOR → MAIOR) ║
-╚════════════════════════════════════════════════════════════════╝
-
-1. � BAIXA GRU → JFK | Avianca | 2401.37 BRL | 1 escala(s) | 1.03 toneladas CO₂/pessoa
-2. � MÉDIA GRU → JFK | Air Canada | 2184.59 BRL | 1 escala(s) | 1.09 toneladas CO₂/pessoa
-3. 🟠 ALTA GRU → JFK | Copa Airlines | 2150.15 BRL | 1 escala(s) | 1.19 toneladas CO₂/pessoa
-
-╔════════════════════════════════════════════════════════════════╗
-║                  ESTATÍSTICAS (POR PESSOA)                     ║
-╚════════════════════════════════════════════════════════════════╝
-
-🌱 Melhor opção: 1.03 toneladas CO₂ por pessoa
-🔴 Pior opção: 1.19 toneladas CO₂ por pessoa
-📊 Média: 1.10 toneladas CO₂ por pessoa
-💡 Diferença: 164.00 kg CO₂ (15.9% mais carbono)
+São Paulo (GRU) → Lisboa (LIS)
+25/01/2025 • 5 voos encontrados
 ```
 
-### Detalhes do Voo
+#### Card de Voo (Exemplo)
 ```
-========================================
-🛫 GRU → JFK 🛬
-========================================
-✈️  Companhia: Avianca
-💰 Preço: 2401.37 BRL
-🔄 Escalas: 1
-🌱 Emissão CO₂: 1.03 toneladas CO₂ por pessoa
-📊 Nível: 🟢 BAIXA
+┌─────────────────────────────────────────────┐
+│ 💚 237.5 kg CO₂/passageiro                  │
+│                                             │
+│ TAP Air Portugal                            │
+│                                             │
+│ 🛫 Partida: 25/01/2025 10:30               │
+│ 🛬 Chegada: 25/01/2025 23:00               │
+│                                             │
+│ ⏱️ Direto • 10h 30min                       │
+│ 💰 3.245,00 BRL                             │
+│ ✈️ Airbus A330-900neo                       │
+└─────────────────────────────────────────────┘
+```
 
-Segmentos:
-  1. GRU → BOG | Avianca AV 86
-     🛩️  Aeronave: Boeing 787-8 Dreamliner (788)
+#### Classificação por Cores
+- 🟢 **Verde** (< 250 kg): Baixa emissão - Ótima escolha!
+- 🟡 **Amarelo** (250-400 kg): Média emissão
+- 🟠 **Laranja** (400-600 kg): Alta emissão
+- 🔴 **Vermelho** (> 600 kg): Muito alta emissão
+
+---
+
+## 📋 Códigos IATA Populares
+
+### Brasil 🇧🇷
+| Código | Cidade | Aeroporto |
+|--------|--------|-----------|
+| GRU | São Paulo | Guarulhos |
+| GIG | Rio de Janeiro | Galeão |
+| BSB | Brasília | Presidente Juscelino Kubitschek |
+| SSA | Salvador | Deputado Luís Eduardo Magalhães |
+| CGH | São Paulo | Congonhas |
+| SDU | Rio de Janeiro | Santos Dumont |
+| CNF | Belo Horizonte | Confins |
+| POA | Porto Alegre | Salgado Filho |
+| CWB | Curitiba | Afonso Pena |
+| FOR | Fortaleza | Pinto Martins |
+
+### América do Norte 🌎
+| Código | Cidade | País |
+|--------|--------|------|
+| JFK | Nova York | 🇺🇸 EUA |
+| LAX | Los Angeles | 🇺🇸 EUA |
+| MIA | Miami | 🇺🇸 EUA |
+| ORD | Chicago | 🇺🇸 EUA |
+| YYZ | Toronto | 🇨🇦 Canadá |
+| MEX | Cidade do México | 🇲🇽 México |
+| CUN | Cancún | �🇽 México |
+
+### Europa 🇪🇺
+| Código | Cidade | País |
+|--------|--------|------|
+| LIS | Lisboa | 🇵🇹 Portugal |
+| OPO | Porto | 🇵🇹 Portugal |
+| LHR | Londres | 🇬🇧 Reino Unido |
+| CDG | Paris | 🇫🇷 França |
+| MAD | Madrid | 🇪🇸 Espanha |
+| BCN | Barcelona | 🇪🇸 Espanha |
+| FCO | Roma | 🇮🇹 Itália |
+| FRA | Frankfurt | 🇩🇪 Alemanha |
+
+### América do Sul 🌎
+| Código | Cidade | País |
+|--------|--------|------|
+| EZE | Buenos Aires | 🇦🇷 Argentina |
+| SCL | Santiago | 🇨🇱 Chile |
+| LIM | Lima | 🇵🇪 Peru |
+| BOG | Bogotá | 🇨🇴 Colômbia |
+| UIO | Quito | 🇪🇨 Equador |
+| MVD | Montevidéu | 🇺🇾 Uruguai |
+
+---
+
+## 💡 Dicas de Uso
+
+### Para Desenvolvedores
+- Use `mvn clean` antes de compilar para evitar problemas de cache
+- Monitore os logs do Spring Boot para debug
+- A porta padrão é 8080, mas pode ser alterada no `application.properties`
+- O autocomplete carrega 741 aeroportos - pode demorar alguns segundos na primeira vez
+
+### Para Viajantes
+- **Escolha voos diretos** quando possível - geralmente têm menor emissão
+- **Prefira aviões modernos** como Boeing 787, Airbus A350, A330neo
+- **Evite aviões antigos** como A340, 747 (maior consumo)
+- **Compare preço x emissão** - nem sempre o mais barato é o mais sustentável
+- **Reserve com antecedência** para melhores opções
+
+### Economia de Emissões
+Diferença entre o melhor e pior voo pode chegar a:
+- ✅ **50% menos CO₂** em rotas longas
+- ✅ **30-40% menos** em rotas médias
+- ✅ **15-25% menos** em rotas curtas
+
+---
+
+## 🔗 Links Rápidos
+
+- 📖 **[Documentação Completa](DOCUMENTACAO.md)** - Tudo sobre o sistema
+- 🔑 **[Configurar Credenciais](CREDENCIAIS.md)** - Passo a passo
+- 📝 **[README](README.md)** - Visão geral do projeto
+- 🌐 **[API Amadeus](https://developers.amadeus.com/)** - Portal oficial
+
+---
+
+*Última atualização: 9 de Novembro de 2025*
+
+**Desenvolvido com 💚 para um futuro mais sustentável** 🌱✈️
   2. BOG → JFK | Avianca AV 244
      🛩️  Aeronave: Airbus A320neo (32N)
 ========================================

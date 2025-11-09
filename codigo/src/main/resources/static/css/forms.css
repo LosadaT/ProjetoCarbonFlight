@@ -9,7 +9,7 @@
 }
 
 .form-section .container {
-    max-width: 800px;
+    max-width: 1000px;
 }
 
 .form-section h2 {
@@ -29,7 +29,7 @@
 /* Estilo do Formulário */
 .flight-form {
     background: white;
-    padding: 40px;
+    padding: 50px;
     border-radius: 15px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
@@ -154,7 +154,7 @@
    =============================================== */
 
 .results-section {
-    padding: 60px 0;
+    padding: 20px 0 60px 0;
     background: #EBD7A5;
     min-height: calc(100vh - 180px);
 }
@@ -229,6 +229,12 @@
     font-size: 1.4em;
     font-weight: bold;
     color: #2c3e50;
+}
+
+.flight-emission {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #27ae60;
 }
 
 .flight-price {
@@ -406,7 +412,7 @@
 .back-button-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 20px 0;
+    padding: 10px 20px 20px;
 }
 
 .back-button {

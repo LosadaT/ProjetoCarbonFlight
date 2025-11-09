@@ -1,4 +1,5 @@
 // Autocomplete para campos de aeroporto
+// v2.0 - Exibe "Cidade (IATA)" ao selecionar
 class AirportAutocomplete {
     constructor(inputElement, onSelect) {
         this.input = inputElement;
@@ -72,7 +73,7 @@ class AirportAutocomplete {
     }
     
     selectAirport(airport) {
-        this.input.value = airport.iata;
+        this.input.value = `${airport.city} (${airport.iata})`;
         this.hideSuggestions();
         
         if (this.onSelect) {

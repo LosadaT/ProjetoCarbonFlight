@@ -31,12 +31,23 @@ body {
     align-items: center;
 }
 
+.navbar-brand a {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s;
+}
+
+.navbar-brand a:hover {
+    opacity: 0.9;
+}
+
 .navbar-brand h1 {
     color: white;
     font-size: 1.8rem;
     font-weight: bold;
     font-family: 'Fugaz One', cursive;
     letter-spacing: 1px;
+    margin: 0;
 }
 
 .navbar-menu {
@@ -61,28 +72,39 @@ body {
 
 /* ========== HERO SECTION ========== */
 .hero {
-    background: linear-gradient(135deg, #876000 0%, #6b4d00 100%);
-    color: white;
+    background: linear-gradient(135deg, #EBD7A5 0%, #d4c093 100%);
+    color: #2c3e50;
     padding: 4rem 0;
     text-align: center;
+    min-height: calc(100vh - 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero .container {
+    width: 100%;
 }
 
 .hero-title {
     font-size: 3rem;
     margin-bottom: 1rem;
     animation: fadeInDown 0.8s;
+    color: #876000;
 }
 
 .hero-subtitle {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     opacity: 0.9;
+    color: #2c3e50;
 }
 
 .hero-description {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     opacity: 0.8;
+    color: #2c3e50;
 }
 
 .hero-actions {
