@@ -3,11 +3,9 @@ package codigo.util;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Classe para calcular emissões de carbono de voos
- * Baseado em dados da ICAO (International Civil Aviation Organization)
- * e eficiência específica por modelo de aeronave
- */
+// Classe para calcular emissões de carbono de voos
+// Baseado em dados da ICAO (International Civil Aviation Organization)
+// e eficiência específica por modelo de aeronave
 public class CarbonEmissionCalculator {
     
     // Fatores de emissão médios por km (kg CO2 por passageiro por km)
@@ -69,13 +67,10 @@ public class CarbonEmissionCalculator {
         AIRCRAFT_EFFICIENCY.put("734", 0.235); // Boeing 737-400 (older)
     }
     
-    /**
-     * Calcula a emissão de carbono total de um voo em kg CO2
-     * 
-     * @param distanciaTotal Distância total em km
-     * @param numeroEscalas Número de escalas/conexões
-     * @return Emissão total em kg CO2
-     */
+    // Calcula a emissão de carbono total de um voo em kg CO2
+    // @param distanciaTotal Distância total em km
+    // @param numeroEscalas Número de escalas/conexões
+    // @return Emissão total em kg CO2
     public static double calcularEmissao(double distanciaTotal, int numeroEscalas) {
         double emissaoBase;
         
@@ -94,14 +89,11 @@ public class CarbonEmissionCalculator {
         return emissaoBase + penalidade;
     }
     
-    /**
-     * 🛩️ NOVO: Calcula emissão baseado no MODELO ESPECÍFICO do avião
-     * Usa dados de eficiência real de cada aeronave da ICAO
-     * 
-     * @param codigoAviao Código IATA do avião (ex: "738", "77W", "789")
-     * @param distancia Distância do segmento em km
-     * @return Emissão em kg CO2 por passageiro
-     */
+    // 🛩️ NOVO: Calcula emissão baseado no MODELO ESPECÍFICO do avião
+    // Usa dados de eficiência real de cada aeronave da ICAO
+    // @param codigoAviao Código IATA do avião (ex: "738", "77W", "789")
+    // @param distancia Distância do segmento em km
+    // @return Emissão em kg CO2 por passageiro
     public static double calcularEmissaoPorModelo(String codigoAviao, double distancia) {
         if (codigoAviao == null || codigoAviao.isEmpty()) {
             // Fallback para cálculo genérico
@@ -120,16 +112,12 @@ public class CarbonEmissionCalculator {
         }
     }
     
-    /**
-     * Retorna se o modelo do avião é conhecido na base de dados
-     */
+    // Retorna se o modelo do avião é conhecido na base de dados
     public static boolean isModeloConhecido(String codigoAviao) {
         return codigoAviao != null && AIRCRAFT_EFFICIENCY.containsKey(codigoAviao.toUpperCase());
     }
     
-    /**
-     * Retorna o nome descritivo do modelo do avião
-     */
+    // Retorna o nome descritivo do modelo do avião
     public static String getNomeModelo(String codigoAviao) {
         if (codigoAviao == null) return "Desconhecido";
         
@@ -177,16 +165,13 @@ public class CarbonEmissionCalculator {
     }
 
     
-    /**
-     * Calcula a distância aproximada entre dois pontos usando coordenadas
-     * (Fórmula de Haversine)
-     * 
-     * @param lat1 Latitude do ponto 1
-     * @param lon1 Longitude do ponto 1
-     * @param lat2 Latitude do ponto 2
-     * @param lon2 Longitude do ponto 2
-     * @return Distância em km
-     */
+    // Calcula a distância aproximada entre dois pontos usando coordenadas
+    // (Fórmula de Haversine)
+    // @param lat1 Latitude do ponto 1
+    // @param lon1 Longitude do ponto 1
+    // @param lat2 Latitude do ponto 2
+    // @param lon2 Longitude do ponto 2
+    // @return Distância em km
     public static double calcularDistancia(double lat1, double lon1, double lat2, double lon2) {
         final int RAIO_TERRA_KM = 6371;
         
@@ -202,10 +187,8 @@ public class CarbonEmissionCalculator {
         return RAIO_TERRA_KM * c;
     }
     
-    /**
-     * Estima a distância entre dois aeroportos baseado no código IATA
-     * (Versão simplificada - usar coordenadas reais para produção)
-     */
+    // Estima a distância entre dois aeroportos baseado no código IATA
+    // (Versão simplificada - usar coordenadas reais para produção)
     public static double estimarDistanciaPorCodigo(String origem, String destino) {
         // Distâncias aproximadas em km (hardcoded para demonstração)
         // Em produção, buscar de um banco de dados de aeroportos
@@ -226,17 +209,13 @@ public class CarbonEmissionCalculator {
         }
     }
     
-    /**
-     * Calcula emissão baseado nos códigos IATA dos aeroportos
-     */
+    // Calcula emissão baseado nos códigos IATA dos aeroportos
     public static double calcularEmissaoPorRota(String origem, String destino, int numeroEscalas) {
         double distancia = estimarDistanciaPorCodigo(origem, destino);
         return calcularEmissao(distancia, numeroEscalas);
     }
     
-    /**
-     * Formata a emissão de CO2 para exibição
-     */
+    // Formata a emissão de CO2 para exibição
     public static String formatarEmissao(double emissaoKg) {
         if (emissaoKg < 1000) {
             return String.format("%.2f kg CO₂", emissaoKg);
@@ -245,9 +224,7 @@ public class CarbonEmissionCalculator {
         }
     }
     
-    /**
-     * Classifica o nível de emissão
-     */
+    // Classifica o nível de emissão
     public static String classificarEmissao(double emissaoKg) {
         if (emissaoKg < 500) {
             return "🟢 BAIXA";

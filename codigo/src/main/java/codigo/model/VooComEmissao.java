@@ -7,9 +7,7 @@ import com.amadeus.resources.FlightOfferSearch;
 
 import codigo.util.CarbonEmissionCalculator;
 
-/**
- * Classe para representar um voo com informações de emissão de carbono
- */
+// Classe para representar um voo com informações de emissão de carbono
 public class VooComEmissao implements Comparable<VooComEmissao> {
     private FlightOfferSearch voo;
     private double emissaoTotal; // kg CO2
@@ -42,10 +40,8 @@ public class VooComEmissao implements Comparable<VooComEmissao> {
         calcularEmissao();
     }
     
-    /**
-     * Calcula a emissão total do voo baseado nos segmentos
-     * PRIORIDADE: Usa dados reais da API Amadeus quando disponíveis
-     */
+    // Calcula a emissão total do voo baseado nos segmentos
+    // PRIORIDADE: Usa dados reais da API Amadeus quando disponíveis
     private void calcularEmissao() {
         if (voo.getItineraries() == null || voo.getItineraries().length == 0) {
             this.emissaoTotal = 0;
@@ -134,9 +130,7 @@ public class VooComEmissao implements Comparable<VooComEmissao> {
         this.emissaoTotal = emissaoAcumulada;
     }
     
-    /**
-     * Compara voos pela emissão de carbono (para ordenação)
-     */
+    // Compara voos pela emissão de carbono (para ordenação)
     @Override
     public int compareTo(VooComEmissao outro) {
         return Double.compare(this.emissaoTotal, outro.emissaoTotal);
@@ -171,9 +165,7 @@ public class VooComEmissao implements Comparable<VooComEmissao> {
         return voo.getItineraries()[0].getSegments().length - 1;
     }
     
-    /**
-     * Retorna o código da companhia aérea principal
-     */
+    // Retorna o código da companhia aérea principal
     public String getCodigoCompanhia() {
         try {
             return voo.getItineraries()[0].getSegments()[0].getCarrierCode();
@@ -182,17 +174,13 @@ public class VooComEmissao implements Comparable<VooComEmissao> {
         }
     }
     
-    /**
-     * Retorna o nome da companhia aérea principal
-     */
+    // Retorna o nome da companhia aérea principal
     public String getNomeCompanhia() {
         String codigo = getCodigoCompanhia();
         return COMPANHIAS.getOrDefault(codigo, codigo);
     }
     
-    /**
-     * Retorna uma string formatada com informações do voo
-     */
+    // Retorna uma string formatada com informações do voo
     public String getResumo() {
         return String.format(
             "%s → %s | %s | %s | %d escala(s) | %s/pessoa",
@@ -205,9 +193,7 @@ public class VooComEmissao implements Comparable<VooComEmissao> {
         );
     }
     
-    /**
-     * Retorna informações detalhadas do voo
-     */
+    // Retorna informações detalhadas do voo
     public String getDetalhes() {
         StringBuilder sb = new StringBuilder();
         sb.append("\n========================================\n");

@@ -15,9 +15,7 @@ import codigo.model.TGrafo;
 import codigo.model.VooComEmissao;
 import codigo.util.CarbonEmissionCalculator;
 
-/**
- * Serviço principal para buscar voos e calcular rotas sustentáveis
- */
+// Serviço principal para buscar voos e calcular rotas sustentáveis
 public class FlightCarbonService {
     
     private Amadeus amadeus;
@@ -26,9 +24,7 @@ public class FlightCarbonService {
     private Map<Integer, String> indiceParaAeroporto;
     private int proximoIndice;
     
-    /**
-     * Construtor
-     */
+    // Construtor
     public FlightCarbonService(String apiKey, String apiSecret) {
         this.amadeus = Amadeus.builder(apiKey, apiSecret).build();
         this.grafo = new TGrafo(100); // Inicializa com 100 vértices
@@ -37,9 +33,7 @@ public class FlightCarbonService {
         this.proximoIndice = 0;
     }
     
-    /**
-     * Busca voos e retorna ordenados por emissão de carbono usando Dijkstra
-     */
+    // Busca voos e retorna ordenados por emissão de carbono usando Dijkstra
     public List<VooComEmissao> buscarVoosOrdenadosPorEmissao(
             String origem, String destino, String data, int adultos) {
         
@@ -81,9 +75,7 @@ public class FlightCarbonService {
         }
     }
     
-    /**
-     * Ordena voos usando algoritmo de Dijkstra
-     */
+    // Ordena voos usando algoritmo de Dijkstra
     private List<VooComEmissao> ordenarVoosComDijkstra(
             List<VooComEmissao> voos, String origem, String destino) {
         
@@ -129,9 +121,7 @@ public class FlightCarbonService {
         return voos;
     }
     
-    /**
-     * Adiciona voos ao grafo, usando emissão de CO2 como peso
-     */
+    // Adiciona voos ao grafo, usando emissão de CO2 como peso
     private void adicionarVoosAoGrafo(List<VooComEmissao> voos) {
         for (VooComEmissao voo : voos) {
             String origem = voo.getOrigem();
@@ -150,18 +140,14 @@ public class FlightCarbonService {
         }
     }
     
-    /**
-     * Adiciona segmentos individuais (com escalas) ao grafo
-     * Nota: Simplificado para focar no Dijkstra
-     */
+    // Adiciona segmentos individuais (com escalas) ao grafo
+    // Nota: Simplificado para focar no Dijkstra
     private void adicionarSegmentosAoGrafo(VooComEmissao voo) {
         // Por enquanto, apenas adiciona a rota direta
         // Os segmentos já estão representados pela rota principal
     }
     
-    /**
-     * Obtém ou cria índice para um aeroporto
-     */
+    // Obtém ou cria índice para um aeroporto
     private int obterOuCriarIndice(String codigoAeroporto) {
         if (aeroportoParaIndice.containsKey(codigoAeroporto)) {
             return aeroportoParaIndice.get(codigoAeroporto);
@@ -173,9 +159,7 @@ public class FlightCarbonService {
         return indice;
     }
     
-    /**
-     * Exibe resultados formatados
-     */
+    // Exibe resultados formatados
     public void exibirResultados(List<VooComEmissao> voos) {
         if (voos.isEmpty()) {
             System.out.println("Nenhum voo para exibir.");
@@ -219,25 +203,19 @@ public class FlightCarbonService {
         );
     }
     
-    /**
-     * Mostra detalhes de um voo específico
-     */
+    // Mostra detalhes de um voo específico
     public void mostrarDetalhesVoo(List<VooComEmissao> voos, int indice) {
         if (indice >= 0 && indice < voos.size()) {
             System.out.println(voos.get(indice).getDetalhes());
         }
     }
     
-    /**
-     * Retorna o grafo com as rotas
-     */
+    // Retorna o grafo com as rotas
     public TGrafo getGrafo() {
         return grafo;
     }
     
-    /**
-     * Retorna mapeamento de aeroportos
-     */
+    // Retorna mapeamento de aeroportos
     public Map<String, Integer> getAeroportoParaIndice() {
         return aeroportoParaIndice;
     }

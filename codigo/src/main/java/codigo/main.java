@@ -1,14 +1,15 @@
 package codigo;
 
-import codigo.model.TGrafo;
-import codigo.model.VooComEmissao;
-import codigo.service.FlightCarbonService;
-import io.github.cdimascio.dotenv.Dotenv;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+
+import codigo.model.TGrafo;
+import codigo.model.VooComEmissao;
+import codigo.service.FlightCarbonService;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class main {
     
@@ -136,9 +137,7 @@ public class main {
         s.close();
     }
     
-    /**
-     * Método principal para buscar voos sustentáveis
-     */
+    // Método principal para buscar voos sustentáveis
     public static void buscarVoosSustentaveis(Scanner s) {
         System.out.println("\n╔════════════════════════════════════════════════════════╗");
         System.out.println("║         BUSCA DE VOOS SUSTENTÁVEIS                     ║");
