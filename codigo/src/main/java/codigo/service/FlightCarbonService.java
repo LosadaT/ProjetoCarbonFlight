@@ -64,7 +64,7 @@ public class FlightCarbonService {
             // Adiciona ao grafo ANTES de ordenar
             adicionarVoosAoGrafo(voosComEmissao);
             
-            // 🎯 ORDENA USANDO DIJKSTRA ao invés de Collections.sort
+            // ORDENA USANDO DIJKSTRA
             voosComEmissao = ordenarVoosComDijkstra(voosComEmissao, origem, destino);
             
             return voosComEmissao;
@@ -83,11 +83,11 @@ public class FlightCarbonService {
         Integer indiceOrigem = aeroportoParaIndice.get(origem);
         Integer indiceDestino = aeroportoParaIndice.get(destino);
         
-        if (indiceOrigem == null || indiceDestino == null) {
-            System.out.println("⚠️  Dijkstra: Aeroportos não encontrados no grafo, usando ordenação padrão.");
-            Collections.sort(voos);
-            return voos;
-        }
+        // if (indiceOrigem == null || indiceDestino == null) {
+        //     System.out.println("⚠️  Dijkstra: Aeroportos não encontrados no grafo, usando ordenação padrão.");
+        //     Collections.sort(voos);
+        //     return voos;
+        // }
         
         // Executa Dijkstra a partir da origem
         System.out.println("\n🎯 Executando algoritmo de Dijkstra para encontrar rotas ótimas...");

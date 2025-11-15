@@ -1,0 +1,336 @@
+/* ========================================
+   MODO DE ALTO CONTRASTE
+   ======================================== */
+
+body.high-contrast {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+body.high-contrast * {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+}
+
+body.high-contrast .navbar {
+    background: #000000 !important;
+    border-bottom: 3px solid #FFFFFF !important;
+}
+
+body.high-contrast .navbar-brand h1,
+body.high-contrast .navbar-menu a {
+    color: #FFFFFF !important;
+    background-color: transparent !important;
+}
+
+body.high-contrast .navbar-menu a:hover,
+body.high-contrast .navbar-menu a.active {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+}
+
+body.high-contrast .btn {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: 2px solid #FFFFFF !important;
+}
+
+body.high-contrast .btn:hover {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border: 2px solid #FFFFFF !important;
+}
+
+body.high-contrast .flight-card {
+    background-color: #000000 !important;
+    border: 2px solid #FFFFFF !important;
+}
+
+body.high-contrast .flight-header,
+body.high-contrast .flight-details {
+    background-color: transparent !important;
+}
+
+body.high-contrast .emission-badge {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+}
+
+body.high-contrast input,
+body.high-contrast select,
+body.high-contrast textarea {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border: 2px solid #FFFFFF !important;
+}
+
+body.high-contrast footer {
+    background-color: #000000 !important;
+    border-top: 3px solid #FFFFFF !important;
+}
+
+/* ========================================
+   TAMANHOS DE FONTE
+   ======================================== */
+
+body.font-small {
+    font-size: 14px !important;
+}
+
+body.font-medium {
+    font-size: 16px !important;
+}
+
+body.font-large {
+    font-size: 18px !important;
+}
+
+body.font-xlarge {
+    font-size: 22px !important;
+}
+
+/* Ajusta títulos proporcionalmente */
+body.font-small h1 { font-size: 1.8rem !important; }
+body.font-small h2 { font-size: 1.5rem !important; }
+body.font-small h3 { font-size: 1.2rem !important; }
+
+body.font-medium h1 { font-size: 2rem !important; }
+body.font-medium h2 { font-size: 1.7rem !important; }
+body.font-medium h3 { font-size: 1.4rem !important; }
+
+body.font-large h1 { font-size: 2.3rem !important; }
+body.font-large h2 { font-size: 2rem !important; }
+body.font-large h3 { font-size: 1.7rem !important; }
+
+body.font-xlarge h1 { font-size: 2.8rem !important; }
+body.font-xlarge h2 { font-size: 2.4rem !important; }
+body.font-xlarge h3 { font-size: 2rem !important; }
+
+/* ========================================
+   BARRA DE ACESSIBILIDADE
+   ======================================== */
+
+.accessibility-bar {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 350px;
+    height: 100vh;
+    background: linear-gradient(180deg, #876000, #6b4d00);
+    color: white;
+    padding: 20px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+}
+
+.accessibility-bar.open {
+    right: 0;
+}
+
+.accessibility-toggle {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #876000, #6b4d00);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    transition: transform 0.3s, background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accessibility-toggle:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #a07600, #876000);
+}
+
+.accessibility-toggle:focus {
+    outline: 3px solid #EBD7A5;
+}
+
+.accessibility-bar h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #EBD7A5;
+    padding-bottom: 10px;
+}
+
+.accessibility-section {
+    margin-bottom: 25px;
+}
+
+.accessibility-section h4 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #EBD7A5;
+}
+
+.accessibility-button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: rgba(235, 215, 165, 0.2);
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.accessibility-button:hover {
+    background-color: #EBD7A5;
+    color: #6b4d00;
+    border-color: #EBD7A5;
+}
+
+.accessibility-button:focus {
+    outline: none;
+    border-color: #EBD7A5;
+    box-shadow: 0 0 0 3px rgba(235, 215, 165, 0.3);
+}
+
+.accessibility-button.active {
+    background-color: #d4a574;
+    border-color: #d4a574;
+    color: #4a3300;
+}
+
+.accessibility-button span {
+    font-size: 1.5rem;
+}
+
+.close-accessibility {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+    transition: transform 0.3s;
+}
+
+.close-accessibility:hover {
+    transform: rotate(90deg);
+}
+
+/* ========================================
+   ATALHOS DE TECLADO - VISUAL FEEDBACK
+   ======================================== */
+
+.keyboard-help {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #876000, #6b4d00);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    z-index: 9998;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.keyboard-help.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.keyboard-help h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #EBD7A5;
+}
+
+.keyboard-help ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.keyboard-help li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.keyboard-help kbd {
+    background-color: rgba(235, 215, 165, 0.3);
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    border: 1px solid #EBD7A5;
+}
+
+/* ========================================
+   SKIP TO CONTENT (Acessibilidade de Navegação)
+   ======================================== */
+
+.skip-to-content {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background-color: #876000;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    z-index: 10001;
+    transition: top 0.3s;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+/* ========================================
+   FOCUS VISIBLE (Melhor indicação de foco)
+   ======================================== */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #876000 !important;
+    outline-offset: 2px !important;
+}
+
+/* ========================================
+   ANIMAÇÕES REDUZIDAS (para usuários sensíveis)
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

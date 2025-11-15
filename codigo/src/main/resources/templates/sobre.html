@@ -9,8 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/forms.css}">
+    <link rel="stylesheet" th:href="@{/css/accessibility.css}">
 </head>
 <body>
+    <script th:src="@{/js/accessibility.js}"></script>
     <header>
         <nav class="navbar">
             <div class="container">
@@ -33,97 +35,15 @@
                 <p class="subtitle">Conectando pessoas de forma sustentável</p>
 
                 <div class="flight-form">
-                    <h3 style="color: #876000; margin-bottom: 20px;">🎯 Nossa Missão</h3>
+                    <h3 style="color: #876000; margin-bottom: 20px;">Nossa Missão</h3>
                     <p style="line-height: 1.8; color: #555; font-size: 1.1em;">
-                        O <strong>Carbon Flight</strong> é uma plataforma inovadora que ajuda você a encontrar 
+                        <!-- O <strong>Carbon Flight</strong> é uma plataforma inovadora que ajuda você a encontrar 
                         voos com menor emissão de carbono. Acreditamos que é possível viajar de forma 
-                        consciente, priorizando opções mais sustentáveis sem comprometer a qualidade da sua viagem.
+                        consciente, priorizando opções mais sustentáveis sem comprometer a qualidade da sua viagem. -->
+                        No <strong>Carbon Flight</strong> você pode, utilizando informações de rotas aéreas e suas emissões de carbono, 
+                        calcular a rota do aeroporto "A" para o aeroporto “B" mais benéfica para o meio ambiente.
+                        Você seleciona o aeroporto de partida e o de destino, e o programa calcula e indica a rota com menor impacto para o meio ambiente. Além disso, será mostrado as outras rotas possíveis, com suas emissões e, seus tempos de viagem e custo.
                     </p>
-
-                    <h3 style="color: #876000; margin-top: 30px; margin-bottom: 20px;">🚀 Como Funciona</h3>
-                    <div class="flight-details" style="margin-top: 20px;">
-                        <div class="detail-item">
-                            <span class="detail-label">1️⃣ Busca Inteligente</span>
-                            <span class="detail-value" style="font-weight: normal; line-height: 1.6;">
-                                Utilizamos a API da Amadeus para buscar voos em tempo real de centenas de companhias aéreas.
-                            </span>
-                        </div>
-
-                        <div class="detail-item">
-                            <span class="detail-label">2️⃣ Cálculo de Emissões</span>
-                            <span class="detail-value" style="font-weight: normal; line-height: 1.6;">
-                                Calculamos a emissão de CO₂ de cada voo considerando distância, tipo de aeronave e escalas.
-                            </span>
-                        </div>
-
-                        <div class="detail-item">
-                            <span class="detail-label">4️⃣ Ordenação Verde</span>
-                            <span class="detail-value" style="font-weight: normal; line-height: 1.6;">
-                                Apresentamos os resultados priorizando voos com menor pegada de carbono.
-                            </span>
-                        </div>
-                    </div>
-
-                    <h3 style="color: #876000; margin-top: 30px; margin-bottom: 20px;">💡 Tecnologias</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px;">
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center;">
-                            <div style="font-size: 2em; margin-bottom: 10px;">☕</div>
-                            <strong>Java 11</strong>
-                        </div>
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center;">
-                            <div style="font-size: 2em; margin-bottom: 10px;">🍃</div>
-                            <strong>Spring Boot</strong>
-                        </div>
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center;">
-                            <div style="font-size: 2em; margin-bottom: 10px;">🌿</div>
-                            <strong>Thymeleaf</strong>
-                        </div>
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center;">
-                            <div style="font-size: 2em; margin-bottom: 10px;">🔗</div>
-                            <strong>Amadeus API</strong>
-                        </div>
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center;">
-                            <div style="font-size: 2em; margin-bottom: 10px;">📊</div>
-                            <strong>Dijkstra</strong>
-                        </div>
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center;">
-                            <div style="font-size: 2em; margin-bottom: 10px;">🎨</div>
-                            <strong>CSS3</strong>
-                        </div>
-                    </div>
-
-                    <h3 style="color: #876000; margin-top: 30px; margin-bottom: 20px;">📊 Impacto Ambiental</h3>
-                    <p style="line-height: 1.8; color: #555; font-size: 1.1em;">
-                        A aviação é responsável por aproximadamente <strong>2-3% das emissões globais de CO₂</strong>. 
-                        Ao escolher voos com menor emissão, você contribui para reduzir sua pegada de carbono. 
-                        Voos diretos, por exemplo, podem emitir até <strong>50% menos carbono</strong> que voos com escalas.
-                    </p>
-
-                    <div class="info-box" style="margin-top: 30px;">
-                        <h3>🌱 Dicas para Viagens Sustentáveis</h3>
-                        <ul>
-                            <li>Prefira voos diretos quando possível</li>
-                            <li>Escolha companhias com aeronaves modernas (787, A350, A320neo)</li>
-                            <li>Viaje com bagagem leve para reduzir peso e consumo de combustível</li>
-                            <li>Considere compensar suas emissões através de projetos de reflorestamento</li>
-                            <li>Sempre que viável, opte por alternativas terrestres (trem, ônibus)</li>
-                            <li>Agrupe viagens para reduzir o número de deslocamentos</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="info-box" style="background: linear-gradient(135deg, #876000 0%, #6b4d00 100%); color: white; border-left: none;">
-                    <h3 style="color: white;">📧 Contato & Contribuições</h3>
-                    <p style="color: rgba(255,255,255,0.9); line-height: 1.8;">
-                        Este é um projeto acadêmico de código aberto. Se você deseja contribuir, 
-                        reportar bugs ou sugerir melhorias, entre em contato através do GitHub 
-                        ou envie um email para <strong>franciscoltotaro@gmail.com</strong>.
-                    </p>
-                    <div style="margin-top: 20px;">
-                        <a href="/voos/buscar" class="btn" style="background: white; color: #876000;">
-                            Começar a Buscar Voos 🚀
-                        </a>
-                    </div>
                 </div>
             </div>
         </section>
@@ -131,7 +51,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Carbon Flight - Sistema de Voos Sustentáveis</p>
+            <p>&copy; 2025 CarbonFlight - Sistema de Voos Sustentáveis</p>
         </div>
     </footer>
 </body>

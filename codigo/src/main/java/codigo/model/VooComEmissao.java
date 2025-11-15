@@ -204,6 +204,37 @@ public class VooComEmissao implements Comparable<VooComEmissao> {
         return getNomeCompanhia(); // Alias para template
     }
     
+    // Retorna o número do voo principal (primeiro segmento)
+    public String getNumeroVoo() {
+        try {
+            String codigo = getCodigoCompanhia();
+            String numero = voo.getItineraries()[0].getSegments()[0].getNumber();
+            return codigo + " " + numero;
+        } catch (Exception e) {
+            return "N/A";
+        }
+    }
+    
+    // Retorna o modelo do avião principal (primeiro segmento)
+    public String getModeloAviao() {
+        try {
+            var segmento = voo.getItineraries()[0].getSegments()[0];
+            if (segmento.getAircraft() != null && segmento.getAircraft().getCode() != null) {
+                String codigoAviao = segmento.getAircraft().getCode();
+                String nomeModelo = CarbonEmissionCalculator.getNomeModelo(codigoAviao);
+                
+                // Se o nome é diferente do código, retorna o nome completo
+                if (!nomeModelo.equals(codigoAviao)) {
+                    return nomeModelo;
+                }
+                return codigoAviao;
+            }
+            return "N/A";
+        } catch (Exception e) {
+            return "N/A";
+        }
+    }
+    
     // Retorna a data/hora de partida formatada
     public String getDataPartida() {
         try {

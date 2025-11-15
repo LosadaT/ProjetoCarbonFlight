@@ -518,7 +518,7 @@ const airports = [
     { iata: "DPS", name: "Ngurah Rai International Airport", city: "Bali", country: "Indonésia" },
     { iata: "SUB", name: "Juanda International Airport", city: "Surabaya", country: "Indonésia" },
     
-    // Vietnã
+    //Asia
     { iata: "SGN", name: "Tan Son Nhat International Airport", city: "Ho Chi Minh", country: "Vietnã" },
     { iata: "HAN", name: "Noi Bai International Airport", city: "Hanói", country: "Vietnã" },
     { iata: "DAD", name: "Da Nang International Airport", city: "Da Nang", country: "Vietnã" },
@@ -529,8 +529,6 @@ const airports = [
     { iata: "UIH", name: "Phu Cat Airport", city: "Quy Nhon", country: "Vietnã" },
     { iata: "DLI", name: "Lien Khuong Airport", city: "Da Lat", country: "Vietnã" },
     { iata: "HUI", name: "Phu Bai International Airport", city: "Hue", country: "Vietnã" },
-    
-    // Outros países asiáticos
     { iata: "TPE", name: "Taiwan Taoyuan International Airport", city: "Taipei", country: "Taiwan" },
     { iata: "TSA", name: "Taipei Songshan Airport", city: "Taipei", country: "Taiwan" },
     { iata: "KHH", name: "Kaohsiung International Airport", city: "Kaohsiung", country: "Taiwan" },
