@@ -11,14 +11,14 @@
 
 ---
 
-## 📘 Overview
+## Overview
 
 CarbonFlight allows users to compare flight routes based on their estimated CO₂ emissions.
 The system retrieves flight information, builds a graph representing possible routes, and identifies the path with the **lowest carbon emission**.
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 ### Back-end
 
@@ -41,7 +41,7 @@ The system retrieves flight information, builds a graph representing possible ro
 
 ---
 
-## 🧩 How It Works
+## How It Works
 
 ### 1. Graph Construction
 
@@ -66,7 +66,7 @@ All retrieved data is displayed to the user.
 
 ---
 
-## 🌍 Emission Calculation Methods
+## Emission Calculation Methods
 
 Since some airlines do not publicly provide CO₂ emission data, the system uses three fallback strategies:
 
@@ -104,7 +104,7 @@ In practice, this fallback was **never needed** in our tests.
 
 ---
 
-## 🎨 Front-end and User Experience
+## Front-end and User Experience
 
 The interface was designed to be **simple, functional, and accessible**.
 We implemented:
@@ -118,7 +118,7 @@ The front-end communicates with the back-end using **Spring Boot + Thymeleaf**, 
 
 ---
 
-## 📎 API References
+## API References
 
 * **Amadeus API:** [https://developers.amadeus.com/](https://developers.amadeus.com/)
 * **Brazilian Ministry of Science & Technology — CO₂ Document:**
@@ -128,7 +128,7 @@ The front-end communicates with the back-end using **Spring Boot + Thymeleaf**, 
 
 ---
 
-## 📌 Project Goal
+## Project Goal
 
 To provide users with an informed choice by identifying the **route with the lowest carbon footprint**, using the best available data and scientifically backed estimation models.
 
@@ -153,7 +153,7 @@ To provide users with an informed choice by identifying the **route with the low
 
 ---
 
-## 🚀 How to Run - CarbonFlight
+## How to Run - CarbonFlight
 
 ## 📋 Index
 
@@ -164,7 +164,7 @@ To provide users with an informed choice by identifying the **route with the low
 
 ---
 
-## 1. 🔑 How to Create an Amadeus API Key
+## 1. How to Create an Amadeus API Key
 
 ### Step 1: Create an Account
 
@@ -207,7 +207,7 @@ mvn clean compile
 
 ---
 
-## 3. 🌐 How to Run on Localhost (Web Interface)
+## 3. How to Run on Localhost (Web Interface)
 
 ### Method 1: Using Maven (Recommended)
 
@@ -242,7 +242,7 @@ kill -9 PID
 
 ---
 
-## 4. 💻 How to Run in the Console
+## 4. How to Run in the Console
 
 ### Option 1: Using Maven
 
@@ -259,7 +259,7 @@ java -cp target/classes codigo.main
 
 ---
 
-## 📝 Command Summary
+## Command Summary
 
 | Action            | Command                                        |
 | ----------------- | ---------------------------------------------- |
