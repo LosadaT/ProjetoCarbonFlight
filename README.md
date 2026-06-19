@@ -273,6 +273,5 @@ java -cp target/classes codigo.main
 
 
 ## Authors
-
-* [Francisco Losada](https://github.com/LosadaT)
-* [Pedro Moreiras](https://github.com/Pepeu31)
+<a href="https://github.com/LosadaT"><img src="https://avatars.githubusercontent.com/u/99215889?v=4" height=100></a>
+<a href="https://github.com/Pepeu31"><img src="https://avatars.githubusercontent.com/u/127160668?v=4" height=100></a>
